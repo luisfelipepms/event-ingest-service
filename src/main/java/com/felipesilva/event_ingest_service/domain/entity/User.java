@@ -4,12 +4,15 @@ import java.util.Collection;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -29,9 +32,13 @@ public class User implements UserDetails{
     @Column(nullable = false)
     private String password;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(); // sem roles por enquanto
+        return List.of(new SimpleGrantedAuthority("ROLE_" + role.name())); // sem roles por enquanto
     }
 
     @Override
@@ -48,11 +55,19 @@ public class User implements UserDetails{
         return id; 
     }
 
+    public Role getRole(){
+        return this.role;
+    }
+
     public void setUsername(String username) { 
         this.username = username; 
     }
 
     public void setPassword(String password) { 
         this.password = password; 
+    }
+
+    public void setRole(Role role){
+        this.role = role;
     }
 }

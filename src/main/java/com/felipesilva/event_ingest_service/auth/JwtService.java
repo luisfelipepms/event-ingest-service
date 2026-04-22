@@ -1,10 +1,13 @@
 package com.felipesilva.event_ingest_service.auth;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.crypto.SecretKey;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +31,10 @@ public class JwtService {
     public String generateToken(UserDetails user){
         return Jwts.builder()
                 .subject(user.getUsername())
+                .claim("roles", user.getAuthorities()
+                    .stream()
+                    .map(GrantedAuthority::getAuthority)
+                    .toList())
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(getSigningKey())
@@ -38,9 +45,15 @@ public class JwtService {
         return parseClaims(token).getSubject();
     }
 
-    public boolean isTokenValid(String token, UserDetails userDetails){
-        String username = extractUsername(token);
-        return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
+    public List<GrantedAuthority> extractRoles(String token) {
+        List<String> roles = parseClaims(token).get("roles", List.class);
+        return roles.stream()
+                .map(role -> (GrantedAuthority) new SimpleGrantedAuthority(role))
+                .toList();
+    }
+    public boolean isTokenValid(String token, String username){
+        String usernameToken = extractUsername(token);
+        return usernameToken.equals(username) && !isTokenExpired(token);
     }
 
     private boolean isTokenExpired(String token){

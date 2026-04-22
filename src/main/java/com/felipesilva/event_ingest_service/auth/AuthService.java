@@ -2,11 +2,11 @@ package com.felipesilva.event_ingest_service.auth;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.felipesilva.event_ingest_service.domain.entity.RefreshToken;
+import com.felipesilva.event_ingest_service.domain.entity.Role;
 import com.felipesilva.event_ingest_service.domain.entity.User;
 
 import com.felipesilva.event_ingest_service.repository.UserRepository;
@@ -47,6 +47,7 @@ public class AuthService {
         User user = new User();
         user.setUsername(dto.getUsername());
         user.setPassword(passwordEncoder.encode(dto.getPassword())); // ← hash aqui
+        user.setRole(Role.USER);
         userRepository.save(user);
     }
 
