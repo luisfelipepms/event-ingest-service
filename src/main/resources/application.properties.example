@@ -8,6 +8,5 @@ spring.datasource.hikari.max-lifetime=1800000
 
 logging.level.com.zaxxer.hikari=DEBUG
 
-jwt.secret="e3c9d860cbd5da050c57b4a402443a06c99208bcae2917e9bd36b2d5e8690fa9"
+jwt.secret="sua-chave-secreta-muito-longa-aqui-32chars+"
 jwt.expiration=3600000
-jwt.refresh-expiration=604800000

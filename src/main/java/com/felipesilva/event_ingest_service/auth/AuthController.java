@@ -23,15 +23,23 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Map<String, String>> login(@RequestBody @Valid AuthDTO dto) {
-        String token = authService.login(dto);
-        return ResponseEntity.ok(Map.of("token", token));
+    public ResponseEntity<AuthResponseDTO> login(@RequestBody @Valid AuthDTO dto) {
+        AuthResponseDTO response = authService.login(dto);
+        return ResponseEntity.ok(response);
     }
     
     @PostMapping("/register")
     public ResponseEntity<Void> register(@RequestBody @Valid RegisterDTO dto) {
         authService.register(dto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<Map<String, String>> refresh(@RequestBody Map<String, String> body){
+        String token = body.get("refreshToken");
+        String newAccessToken = authService.refresh(token);
+
+        return ResponseEntity.ok(Map.of("accessToken", newAccessToken));
     }
     
 }
