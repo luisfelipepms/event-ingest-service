@@ -7,10 +7,11 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
-import com.felipesilva.event_ingest_service.domain.dto.EventDTO;
+import com.felipesilva.event_ingest_service.domain.dto.event.EventDTO;
 import com.felipesilva.event_ingest_service.domain.entity.Event;
 import com.felipesilva.event_ingest_service.domain.mapper.EventMapper;
 import com.felipesilva.event_ingest_service.exception.EventNotFoundException;
+import com.felipesilva.event_ingest_service.exception.TypeNotFoundException;
 
 @Service
 public class EventService {
@@ -48,6 +49,9 @@ public class EventService {
             return repository.findAll();
         }else{
             lista = repository.findByType(type);
+            if(lista.isEmpty()){
+                throw new TypeNotFoundException();
+            }
             return lista;
         }
     }

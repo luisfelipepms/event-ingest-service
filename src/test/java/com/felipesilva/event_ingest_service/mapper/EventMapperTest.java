@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 
-import com.felipesilva.event_ingest_service.domain.dto.EventDTO;
+import com.felipesilva.event_ingest_service.domain.dto.event.EventDTO;
 import com.felipesilva.event_ingest_service.domain.entity.Event;
 import com.felipesilva.event_ingest_service.domain.mapper.EventMapper;
 

@@ -19,7 +19,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.felipesilva.event_ingest_service.domain.dto.EventDTO;
+import com.felipesilva.event_ingest_service.domain.dto.event.EventDTO;
 import com.felipesilva.event_ingest_service.domain.entity.Event;
 import com.felipesilva.event_ingest_service.domain.mapper.EventMapper;
 import com.felipesilva.event_ingest_service.exception.EventNotFoundException;
@@ -34,6 +34,9 @@ public class EventServiceTest {
 
     @Mock
     private EventMapper mapper;
+
+    @Mock
+    private AuditService auditService;
 
     @InjectMocks
     private EventService service;

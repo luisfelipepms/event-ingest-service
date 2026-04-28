@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.felipesilva.event_ingest_service.domain.dto.EventDTO;
+import com.felipesilva.event_ingest_service.domain.dto.event.EventDTO;
 import com.felipesilva.event_ingest_service.domain.entity.Event;
 import com.felipesilva.event_ingest_service.service.EventService;
 

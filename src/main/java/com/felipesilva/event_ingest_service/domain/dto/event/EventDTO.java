@@ -1,4 +1,4 @@
-package com.felipesilva.event_ingest_service.domain.dto;
+package com.felipesilva.event_ingest_service.domain.dto.event;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

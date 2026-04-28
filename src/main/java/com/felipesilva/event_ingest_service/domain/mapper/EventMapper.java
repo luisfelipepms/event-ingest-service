@@ -2,7 +2,7 @@ package com.felipesilva.event_ingest_service.domain.mapper;
 
 import org.springframework.stereotype.Component;
 
-import com.felipesilva.event_ingest_service.domain.dto.EventDTO;
+import com.felipesilva.event_ingest_service.domain.dto.event.EventDTO;
 import com.felipesilva.event_ingest_service.domain.entity.Event;
 
 @Component
