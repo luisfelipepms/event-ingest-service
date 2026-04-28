@@ -1,8 +1,6 @@
 package com.felipesilva.event_ingest_service.service;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.http.HttpStatus;

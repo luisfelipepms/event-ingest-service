@@ -24,7 +24,6 @@ import com.felipesilva.event_ingest_service.domain.dto.cleaning.CleaningResponse
 import com.felipesilva.event_ingest_service.domain.entity.Cleaning;
 import com.felipesilva.event_ingest_service.domain.entity.User;
 import com.felipesilva.event_ingest_service.domain.mapper.CleaningMapper;
-import com.felipesilva.event_ingest_service.exception.InvalidDateException;
 import com.felipesilva.event_ingest_service.exception.UserNotFoundexception;
 import com.felipesilva.event_ingest_service.repository.CleaningRepository;
 import com.felipesilva.event_ingest_service.repository.UserRepository;
